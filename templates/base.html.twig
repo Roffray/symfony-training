@@ -10,24 +10,24 @@
     </title>
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="#">
-        <link rel="stylesheet" href="#">
+        {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
 {% block body %}
-    <header>
-        <a href="{{ path('home') }}">Home</a>
-    </header>
-
     {{ include('includes/_menu.html.twig') }}
 
-    {% block page_content %}
-
-    {% endblock %}
-
-    {{ render(controller('App\\Controller\\NewsController::getLastNews', {'count': 3})) }}
-
+    <main class="container">
+        <div class="row">
+            <div class="col-8 box">
+                {% block page_content %}
+                {% endblock %}
+            </div>
+            <div class="col-4 box">
+                {{ render(controller('App\\Controller\\NewsController::getLastNews', {'count': 3})) }}
+            </div>
+        </div>
+    </main>
 {% endblock %}
 </body>
 </html>
