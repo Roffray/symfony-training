@@ -1,0 +1,10 @@
+version: '3.2'
+
+services:
+  mailcatcher:
+    image: jderusse/mailcatcher
+    environment:
+      - VIRTUAL_HOST=mail.training
+    ports:
+      - 8005:80
+
