@@ -26,6 +26,9 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "egulias/email-validator": {
+        "version": "2.1.11"
+    },
     "monolog/monolog": {
         "version": "1.25.1"
     },
@@ -156,6 +159,18 @@
     },
     "symfony/intl": {
         "version": "v4.3.5"
+    },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "6e5921f710bec05533f664e0b9a3d838545edd82"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
     },
     "symfony/mime": {
         "version": "v4.3.5"

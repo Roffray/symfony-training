@@ -19,6 +19,21 @@
 
     <main class="container">
         <div class="row">
+            {% for type, messages_by_type in app.flashes %}
+                <div class="alert alert-{{ type }}" role="alert">
+                    {% if messages_by_type|length < 2 %}
+                        {{ messages_by_type|first }}
+                    {% else %}
+                        <ul>
+                            {% for message in messages_by_type %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
             <div class="col-8 box">
                 {% block page_content %}
                 {% endblock %}
