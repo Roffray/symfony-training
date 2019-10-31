@@ -9,14 +9,20 @@ use Symfony\Component\HttpFoundation\Response;
 class RouteTest extends WebTestCase
 {
 
+    /** @var \Symfony\Bundle\FrameworkBundle\KernelBrowser */
+    private $client;
+
+    protected function setUp(): void
+    {
+        $this->client = self::createClient();
+    }
+
     /**
      * @dataProvider provideRoutes
      */
     public function testRoute(string $path, int $statusCode): void
     {
-        $client = self::createClient();
-
-        $client->request(Request::METHOD_GET, $path);
+        $this->client->request(Request::METHOD_GET, $path);
 
         self::assertResponseStatusCodeSame($statusCode);
     }
