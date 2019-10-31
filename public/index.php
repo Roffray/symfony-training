@@ -1,5 +1,6 @@
 <?php
 
+use App\CacheKernel;
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,9 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();
+
+$kernel = new CacheKernel($kernel);
 $response = $kernel->handle($request);
+
 $response->send();
 $kernel->terminate($request, $response);

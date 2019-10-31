@@ -39,7 +39,7 @@
                 {% endblock %}
             </div>
             <div class="col-4 box">
-                {{ render(controller('App\\Controller\\NewsController::getLastNews', {'count': 3})) }}
+                {{ render_esi(controller('App\\Controller\\NewsController::getLastNews', {'count': 3})) }}
             </div>
         </div>
     </main>
