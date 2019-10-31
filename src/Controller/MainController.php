@@ -23,7 +23,7 @@ class MainController extends AbstractController
         MailerInterface $mailer,
         ContactHandler $contactHandler
     ) {
-        $this->mailer = $mailer;
+        $this->mailer         = $mailer;
         $this->contactHandler = $contactHandler;
     }
 
