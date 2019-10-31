@@ -3,16 +3,22 @@
 namespace App\User;
 
 use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationHandler
 {
 
     /** @var UserManager */
     private $userManager;
+    /** @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface */
+    private $passwordEncoder;
 
-    public function __construct(UserManager $userManager)
-    {
+    public function __construct(
+        UserManager $userManager,
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
         $this->userManager = $userManager;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function handle(RegistrationData $data): User
@@ -21,7 +27,9 @@ class RegistrationHandler
         $user
             ->setUsername($data->username)
             ->setEmail($data->email)
-            ->setPassword($data->password);
+            ->setPassword(
+                $this->passwordEncoder->encodePassword($user, $data->password)
+            );
 
         $this->userManager->save($user);
 
